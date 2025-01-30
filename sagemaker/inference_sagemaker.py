@@ -15,8 +15,7 @@ def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     return response
 
 payload = {"inputs": ["What software versions of Apache are affected by CVE-2021-44228?"]}
-endpoint = "prod-setfit-hsd-hist-dep-vs-indep-endpoint"
-#endpoint = "clmlsreendpoint"
+endpoint = "clmlsreendpoint"
 
 outut= query_endpoint(payload,endpoint)
 

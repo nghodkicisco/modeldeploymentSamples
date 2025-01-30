@@ -13,7 +13,7 @@ except ValueError:
 #model_ID = "cjsanjay/llama-3-8B-gorilla-meraki_v2"
 model_ID = "meta-llama/Meta-Llama-3-8B"
 
-image_uri = "422940237045.dkr.ecr.us-west-2.amazonaws.com/lorax:latest"
+image_uri = "XXXXXXX.dkr.ecr.us-west-2.amazonaws.com/lorax:latest"
 
 
 # Hub Model configuration. https://huggingface.co/models
