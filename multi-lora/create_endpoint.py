@@ -20,7 +20,7 @@ image_uri = "422940237045.dkr.ecr.us-west-2.amazonaws.com/lorax:latest"
 hub = {
     'HF_MODEL_ID': model_ID,
     'SM_NUM_GPUS': json.dumps(1),
-    'HF_TOKEN': "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",
+    'HF_TOKEN': "XXXXXXXXX",
     'MAX_INPUT_LENGTH': json.dumps(4096),  # Max length of input text
     'MAX_TOTAL_TOKENS': json.dumps(8192),  # Max length of the generation (including input text)
 }
