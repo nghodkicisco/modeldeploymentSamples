@@ -10,7 +10,7 @@ model = models.data[0].id
 completion = client.chat.completions.create(
     model=model,
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "system", "content": "Can you describe kubernetes in 3 sentences"},
         {"role": "user", "content": "Hello"},
     ]
 )
