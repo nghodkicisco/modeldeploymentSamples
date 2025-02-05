@@ -3,7 +3,7 @@ import json
 import os, time
 
 #Global variables
-endpoint_name = "CL-Lorax-demo-test"
+endpoint_name = "CLlorax-1"
 os.environ["AWS_DEFAULT_REGION"] ="us-west-2"
 
 #Function to query the endpoint
@@ -20,7 +20,7 @@ def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     return response
 
 #Input variables
-input = [{"prompt": "Invoke the command to delete the camera wireless profile 'prof001' from the network \'net002\'", "adapter_id": "<Huggingface repo>"},{"prompt":"Retrieve latest CVEs for vendors on page 3", "adapter_id":"<Huggingface Repo>"}]
+input = [{"prompt": "Invoke the command to delete the camera wireless profile 'prof001' from the network \'net002\'", "adapter_id": "<Huggingface repo ID>"},{"prompt":"Retrieve latest CVEs for vendors on page 3", "adapter_id":"<Huggingface repo ID>"}]
 
 #Select input
 select_input = 1

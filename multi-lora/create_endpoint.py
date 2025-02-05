@@ -4,17 +4,14 @@ from sagemaker import Model
 import boto3
 from sagemaker.huggingface import HuggingFaceModel, get_huggingface_llm_image_uri
 
-# get the role
 try:
     role = sagemaker.get_execution_role()
 except ValueError:
     iam = boto3.client('iam')
     role = iam.get_role(RoleName='admin')['Role']['Arn']
 
-# Model configuration
 model_ID = "meta-llama/Meta-Llama-3-8B"
 
-# get the image URI for the model
 image_uri = "XXXXXXXX.dkr.ecr.us-west-2.amazonaws.com/lorax:latest"
 
 
@@ -22,7 +19,7 @@ image_uri = "XXXXXXXX.dkr.ecr.us-west-2.amazonaws.com/lorax:latest"
 hub = {
     'HF_MODEL_ID': model_ID,
     'SM_NUM_GPUS': json.dumps(1),
-    'HF_TOKEN': "XXXXXXXXXXXXXXXX",
+    'HF_TOKEN': "XXXXXXXXXXX",
     'MAX_INPUT_LENGTH': json.dumps(4096),  # Max length of input text
     'MAX_TOTAL_TOKENS': json.dumps(8192),  # Max length of the generation (including input text)
 }
@@ -36,7 +33,7 @@ lorax_model = Model(
 
 # deploy model to SageMaker Inference
 predictor = lorax_model.deploy(
-    endpoint_name="CL-Lorax-demo-test",
+    endpoint_name="CL-Lorax-demo",
     initial_instance_count=1,
     instance_type="ml.g5.2xlarge",
     container_startup_health_check_timeout=1600,
