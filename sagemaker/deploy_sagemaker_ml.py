@@ -8,7 +8,7 @@ from sagemaker.pytorch.model import PyTorchModel
 parser = argparse.ArgumentParser(
                     prog='Deploy Model to Sagemaker',
                     description='This script deploys the model to sagemaker',
-                    epilog='Usage: python3 deploymodel.py --model_path <path to model.tar.gz> --endpoint_name <name of endpoint> --region <aws region> --role <role name>')
+                    epilog='Usage: python3 deploy_sagemaker_ml.py --model_path <path to model.tar.gz> --endpoint_name <name of endpoint> --region <aws region> --role <role name>')
 
 parser.add_argument('--model_path', type=str, help='Path to model', required=True)
 parser.add_argument('--endpoint_name', type=str, help='Name of endpoint', required=True)
@@ -39,11 +39,6 @@ def silent_unzip(model):
     os.system("tar -xzf "+model+" -C model_to_deploy")
     print("Model package unzipped successfully")
 
-
-# delete the model package and model_to_deploy folder
-def delete_files():
-    os.system("rm -rf " + model)
-    os.system("rm -rf model_to_deploy")
 # check if inference.py and requirements.txt and code directory exists in above extracted directory or subfolders
 def check_files(directory):
     check = 0
@@ -57,12 +52,15 @@ def check_files(directory):
     else:
         return False
 
+# delete the model package and model_to_deploy folder
+def delete_files():
+    os.system("rm -rf " + model)
+    os.system("rm -rf model_to_deploy")
 
 model = download_model(s3_uri)
 silent_unzip(model)
 
 #verify if code/ directory exists in above extracted directory as subfolder
-
 if check_files("model_to_deploy"):
     print("Code directory includes inference.py and requirements.txt")
     delete_files()
@@ -85,7 +83,7 @@ pt_model = PyTorchModel(
 predictor = pt_model.deploy(
     endpoint_name=endpoint_name,
     initial_instance_count=3,
-    instance_type="ml.g4dn.12xlarge"
+    instance_type="ml.g4dn.2xlarge"
 )
 
 # test inference

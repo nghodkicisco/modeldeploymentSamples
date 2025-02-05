@@ -1,13 +1,12 @@
-
 import boto3
 import json
 import os, time
 
-
-endpoint_name = "CLLorax-1"
-#endpoint_name = "opencve-llama3-v1"
+#Global variables
+endpoint_name = "CL-Lorax-demo-test"
 os.environ["AWS_DEFAULT_REGION"] ="us-west-2"
 
+#Function to query the endpoint
 def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     client = boto3.client("sagemaker-runtime", region_name=os.environ["AWS_DEFAULT_REGION"])
     response = client.invoke_endpoint(
@@ -20,14 +19,13 @@ def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     response = json.loads(response)
     return response
 
-prompt = '[/INST]Please remove the action batch having actionBatchId \'actionBatch007\' in the organization identified by the organizationId \'org2690\'[/INST]'
-#input_queries = ["Invoke the command to delete the camera wireless profile 'prof001' from the network 'net002'.","Please remove the action batch having actionBatchId 'actionBatch007' in the organization identified by the organizationId 'org2690'"]
+#Input variables
+input = [{"prompt": "Invoke the command to delete the camera wireless profile 'prof001' from the network \'net002\'", "adapter_id": "<Huggingface repo>"},{"prompt":"Retrieve latest CVEs for vendors on page 3", "adapter_id":"<Huggingface Repo>"}]
 
-
-input_meraki = "Invoke the command to delete the camera wireless profile 'prof001' from the network 'net002'"
-input_opencve = "Retrieve latest CVEs for vendors on page 3"
-input = [{"prompt": "Invoke the command to delete the camera wireless profile 'prof001' from the network \'net002\'", "adapter_id": "nghodki/meraki"},{"prompt":"Retrieve latest CVEs for vendors on page 3", "adapter_id":"nghodki/opencve"}]
+#Select input
 select_input = 1
+
+#Set payload
 payload_adapter = {
 "inputs": input[select_input]["prompt"],
     "parameters": {
@@ -37,10 +35,6 @@ payload_adapter = {
     }
 }
 
+#Query endpoint
 response = query_endpoint(payload_adapter, endpoint_name)
 print(response)
-# while True:
-#     start_time = time.time()
-#     response = query_endpoint(payload_adapter, endpoint_name)
-#     end_time = time.time()
-#     print(f'{response} in {end_time - start_time} seconds')

@@ -4,6 +4,7 @@ import os, json
 def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     client = boto3.client("sagemaker-runtime", region_name=os.environ["AWS_DEFAULT_REGION"])
     response = client.invoke_endpoint(
+        InferenceComponentName="ciscolive-demo-ic-1",
         EndpointName=endpoint_name,
         ContentType="application/json",
         Body=json.dumps(payload),
@@ -14,8 +15,8 @@ def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     response = json.loads(response)
     return response
 
-payload = {"inputs": ["What software versions of Apache are affected by CVE-2021-44228?"]}
-endpoint = "clmlsreendpoint"
+payload = {"inputs": ["how many policies are there?"]}
+endpoint = "ciscolive-demo-ic"
 
 outut= query_endpoint(payload,endpoint)
 
