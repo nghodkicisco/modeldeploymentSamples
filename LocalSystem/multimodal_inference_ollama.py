@@ -1,3 +1,6 @@
+#Copyright Cisco Systems, Inc. and its affiliates
+#Licensed under the MIT License 
+
 import base64
 import ollama
 

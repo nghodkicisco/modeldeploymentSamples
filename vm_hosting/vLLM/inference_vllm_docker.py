@@ -1,3 +1,7 @@
+#Copyright Cisco Systems, Inc. and its affiliates
+#Licensed under the MIT License 
+
+
 from openai import OpenAI
 openai_api_key = "EMPTY"
 openai_api_base = "http://<EC2-IP Address>:8000/v1"

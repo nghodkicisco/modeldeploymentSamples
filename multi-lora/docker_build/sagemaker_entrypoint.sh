@@ -1,3 +1,6 @@
+#Copyright Cisco Systems, Inc. and its affiliates
+#Licensed under the MIT License
+
 #!/bin/bash
 
 if [[ -z "${HF_MODEL_ID}" ]]; then
