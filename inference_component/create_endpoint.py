@@ -1,8 +1,5 @@
-#Copyright Cisco Systems, Inc. and its affiliates
+
 #Licensed under the MIT License 
-
-
-
 
 import sagemaker
 import boto3
@@ -10,14 +7,14 @@ import time
 from sagemaker.huggingface import HuggingFaceModel, get_huggingface_llm_image_uri
 
 #variables
-endpoint_config_name = 'ciscolive-demo-ic'
+endpoint_config_name = 'demo-ic'
 variant_name = 'AllTraffic'
 initial_instance_count = 1
 model_data_download_timeout_in_seconds = 1200
 container_startup_health_check_timeout_in_seconds = 1200
 max_instance_count = 4
 instance_type = 'ml.g5.12xlarge'
-endpoint_name = 'ciscolive-demo-ic'
+endpoint_name = 'demo-ic'
 
 iam_client = boto3.client('iam')
 role = iam_client.get_role(RoleName='admin')['Role']['Arn']
@@ -65,7 +62,7 @@ resp_ep = sagemaker_client.create_endpoint(
 time.sleep(240)
 print("Endpoint created")
 s3_buckets = ['s3://<Model Package 1>.tar.gz','s3://<Model Package 2>.tar.gz']
-models = ['ciscolive-demo-ic-1', 'ciscolive-demo-ic-2']
+models = ['demo-ic-1', 'demo-ic-2']
 
 #Create model objects
 for model_name, bucket in zip(models, s3_buckets):

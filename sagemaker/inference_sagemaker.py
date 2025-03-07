@@ -1,4 +1,4 @@
-#Copyright Cisco Systems, Inc. and its affiliates
+
 #Licensed under the MIT License 
 
 
@@ -8,7 +8,7 @@ import os, json
 def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     client = boto3.client("sagemaker-runtime", region_name=os.environ["AWS_DEFAULT_REGION"])
     response = client.invoke_endpoint(
-        InferenceComponentName="ciscolive-demo-ic-1",
+        InferenceComponentName="demo-ic-1",
         EndpointName=endpoint_name,
         ContentType="application/json",
         Body=json.dumps(payload),
@@ -20,7 +20,7 @@ def query_endpoint(payload: dict, endpoint_name: str) -> dict:
     return response
 
 payload = {"inputs": ["how many policies are there?"]}
-endpoint = "ciscolive-demo-ic"
+endpoint = "demo-ic"
 
 outut= query_endpoint(payload,endpoint)
 

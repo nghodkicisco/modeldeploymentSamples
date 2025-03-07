@@ -1,4 +1,4 @@
-#Copyright Cisco Systems, Inc. and its affiliates
+
 #Licensed under the MIT License 
 
 import os
@@ -56,7 +56,7 @@ class SageMakerEndpointUser(User):
             )
         except Exception as e:
             # Fire a failure event
-            print("Failure Nikhil")
+            print("Failure")
             self.environment.events.request.fire(
                 request_type="SageMaker",
                 name=endpoint_name,

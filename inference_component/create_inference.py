@@ -1,4 +1,4 @@
-#Copyright Cisco Systems, Inc. and its affiliates
+
 #Licensed under the MIT License 
 
 import boto3
@@ -8,10 +8,10 @@ import time
 sagemaker_client = boto3.client('sagemaker')
 
 #variables for inference component
-endpoint_name = 'ciscolive-demo-ic'
+endpoint_name = 'demo-ic'
 variant_name = 'AllTraffic'
-inference_components = ['ciscolive-demo-ic-1', 'ciscolive-demo-ic-2']
-models = ['ciscolive-demo-ic-1', 'ciscolive-demo-ic-2']
+inference_components = ['demo-ic-1', 'demo-ic-2']
+models = ['demo-ic-1', 'demo-ic-2']
 
 #Function for creating inference Component
 def create_inference_component(inference_component, model_name):

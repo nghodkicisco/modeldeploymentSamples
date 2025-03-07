@@ -1,4 +1,4 @@
-#Copyright Cisco Systems, Inc. and its affiliates
+
 #Licensed under the MIT License 
 
 import boto3
@@ -22,8 +22,8 @@ def query_endpoint(payload: dict, endpoint_name: str, inference_component_name: 
 # Variables
 payload1 = {"inputs": ["how many policies are there?"]}
 payload2 = {"inputs": ["Create a policy for the network"]}
-endpoint = "ciscolive-demo-ic"
-inference_components = ['ciscolive-demo-ic-1', 'ciscolive-demo-ic-2']
+endpoint = "demo-ic"
+inference_components = ['demo-ic-1', 'demo-ic-2']
 
 # Query endpoint
 for ic in inference_components:
